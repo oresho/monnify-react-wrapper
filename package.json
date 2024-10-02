@@ -1,0 +1,28 @@
+{
+  "name": "monnify-react-wrapper",
+  "version": "1.0.0",
+  "description": "A React wrapper for the Monnify SDK",
+  "main": "dist/Monnify.js",
+  "types": "dist/Monnify.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oresho/monnify-react-wrapper.git"
+  },
+  "author": "Oreoluwa Somuyiwa",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/oresho/monnify-react-wrapper/issues"
+  },
+  "homepage": "https://github.com/oresho/monnify-react-wrapper#readme"
+}
