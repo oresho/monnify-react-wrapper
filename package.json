@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/oresho/monnify-react-wrapper.git"
+    "url": "git+https://github.com/oresho/monnify-react-wrapper.git"
   },
   "author": "Oreoluwa Somuyiwa",
   "license": "MIT",
