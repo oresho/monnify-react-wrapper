@@ -1,181 +1,169 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+/** 
+ * Configuration options for initializing a payment with Monnify.
+ * 
+ * @param {Object} config - Payment configuration object.
+ * @param {number} config.amount - Amount to be paid (in the smallest currency unit, e.g., kobo for NGN).
+ * @param {string} config.currency - Currency code (e.g., 'NGN' for Nigerian Naira).
+ * @param {string} config.reference - Unique reference for the payment transaction.
+ * @param {string} config.customerFullName - Full name of the customer making the payment.
+ * @param {string} config.customerEmail - Email address of the customer.
+ * @param {string} config.paymentDescription - Description of the payment.
+ * @param {string} [config.redirectUrl] - Optional redirect URL after payment completion.
+ * @param {Array<string>} [config.paymentMethods] - Optional array of payment methods to display.
+ * @param {Object} [config.metadata] - Optional metadata for additional information.
+ * @param {Array<Object>} [config.incomeSplitConfig] - Optional configuration for splitting payments between sub-accounts.
+ * @param {function} [config.onComplete] - Callback function executed on successful completion of the transaction.
+ * @param {function} [config.onClose] - Callback function executed when the payment modal is closed.
+ */
+/**
+ * Response returned by Monnify upon successful payment completion.
+ * 
+ * @param {Object} response - Monnify response object.
+ * @param {number} response.amount - Amount to be paid.
+ * @param {number} response.amountPaid - Amount actually paid.
+ * @param {boolean} response.completed - Indicates if the transaction was completed successfully.
+ * @param {string} response.completedOn - Timestamp when the transaction was completed.
+ * @param {string} response.createdOn - Timestamp when the transaction was created.
+ * @param {string} response.currencyCode - Currency code of the payment (e.g., 'NGN').
+ * @param {string} response.customerEmail - Email address of the customer.
+ * @param {string} response.customerName - Full name of the customer.
+ * @param {number} response.fee - Fees charged for the transaction.
+ * @param {Object} response.metaData - Metadata related to the transaction (device type, IP address, etc.).
+ * @param {number} response.payableAmount - Total amount due for payment.
+ * @param {string} response.paymentMethod - Payment method used (e.g., 'CARD').
+ * @param {string} response.paymentReference - Unique reference for the payment transaction.
+ * @param {string} response.paymentStatus - Status of the payment (e.g., 'PAID').
+ * @param {string} response.transactionReference - Unique transaction reference.
+ */
+/**
+ * Response returned by Monnify if a user cancels the transaction.
+ * 
+ * @param {Object} response - User cancelled response object.
+ * @param {number} response.authorizedAmount - Amount authorized before cancellation.
+ * @param {string} response.paymentStatus - Status of the payment at the time of cancellation.
+ * @param {string} [response.redirectUrl] - Optional redirect URL.
+ * @param {string} response.responseCode - Code representing the response status (e.g., 'USER_CANCELLED').
+ * @param {string} response.responseMessage - Message describing the cancellation event.
+ */
 /**
  * Monnify class for handling payment initialization with the Monnify SDK.
  */
-var Monnify = /** @class */ (function () {
-    /**
-     * Creates an instance of the Monnify class.
-     * @param apiKey - The API key provided by Monnify.
-     * @param contractCode - The contract code provided by Monnify.
-     */
-    function Monnify(apiKey, contractCode) {
-        this.apiKey = apiKey;
-        this.contractCode = contractCode;
-        // Load the SDK script asynchronously
-        this.loadSDK();
+var Monnify = /*#__PURE__*/function () {
+  function Monnify(apiKey, contractCode) {
+    _classCallCheck(this, Monnify);
+    this.apiKey = apiKey;
+    this.contractCode = contractCode;
+    this.VALID_PAYMENT_METHODS = ["CARD", "ACCOUNT_TRANSFER", "USSD", "PHONE_NUMBER"];
+
+    // Load the SDK script asynchronously
+    this.loadSDK();
+  }
+
+  // Asynchronously loads the Monnify SDK
+  return _createClass(Monnify, [{
+    key: "loadSDK",
+    value: function loadSDK() {
+      return new Promise(function (resolve, reject) {
+        if (window.MonnifySDK) {
+          resolve();
+        } else {
+          var script = document.createElement('script');
+          script.src = 'https://sdk.monnify.com/plugin/monnify.js';
+          script.async = true;
+          script.onload = function () {
+            if (window.MonnifySDK) {
+              resolve();
+            } else {
+              reject(new Error('Failed to load Monnify SDK'));
+            }
+          };
+          script.onerror = function () {
+            return reject(new Error('Failed to load Monnify SDK script'));
+          };
+          document.body.appendChild(script);
+        }
+      });
     }
-    /**
-     * Asynchronously loads the Monnify SDK.
-     * @returns A promise that resolves when the SDK is loaded successfully.
-     */
-    Monnify.prototype.loadSDK = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (resolve, reject) {
-                        if (window.MonnifySDK) {
-                            resolve();
-                        }
-                        else {
-                            var script = document.createElement('script');
-                            script.src = 'https://sdk.monnify.com/plugin/monnify.js';
-                            script.async = true;
-                            script.onload = function () {
-                                if (window.MonnifySDK) {
-                                    resolve();
-                                }
-                                else {
-                                    reject(new Error('Failed to load Monnify SDK'));
-                                }
-                            };
-                            script.onerror = function () { return reject(new Error('Failed to load Monnify SDK script')); };
-                            document.body.appendChild(script);
-                        }
-                    })];
-            });
-        });
-    };
-    /**
-     * Validates the provided payment configuration.
-     * Logs errors for any missing required fields or invalid payment methods.
-     * @param config - The configuration object for payment initialization.
-     * @returns True if the configuration is valid; otherwise, false.
-     */
-    Monnify.prototype.validateConfig = function (config) {
-        var requiredFields = ['amount', 'currency', 'reference', 'customerFullName', 'customerEmail', 'paymentDescription'];
-        var isValid = true;
-        requiredFields.forEach(function (field) {
-            if (!config[field]) {
-                console.error("Missing required field: ".concat(field));
-                isValid = false;
-            }
-        });
-        // Log an error if paymentMethods is defined but empty
-        if (config.paymentMethods !== undefined && Array.isArray(config.paymentMethods) && config.paymentMethods.length === 0) {
-            console.error('Error: No payment methods specified in paymentMethods array.');
-            isValid = false;
+
+    // Validates the provided payment configuration
+  }, {
+    key: "validateConfig",
+    value: function validateConfig(config) {
+      var _this = this;
+      var requiredFields = ['amount', 'currency', 'reference', 'customerFullName', 'customerEmail', 'paymentDescription'];
+      var isValid = true;
+      requiredFields.forEach(function (field) {
+        if (!config[field]) {
+          console.error("Missing required field: ".concat(field));
+          isValid = false;
         }
-        // Validate the paymentMethods array
-        if (config.paymentMethods) {
-            var invalidMethods = config.paymentMethods.filter(function (method) { return !Monnify.VALID_PAYMENT_METHODS.includes(method); });
-            if (invalidMethods.length > 0) {
-                console.error("Error: Invalid payment methods specified: ".concat(invalidMethods.join(', ')));
-                isValid = false;
-            }
-        }
-        return isValid;
-    };
-    /**
-     * Asynchronously initializes the payment process with Monnify.
-     * @param config - The configuration object for payment initialization.
-     * @returns A promise that resolves when the payment is successfully initialized.
-     */
-    Monnify.prototype.initializePayment = function (config) {
-        return __awaiter(this, void 0, void 0, function () {
-            var isValid, paymentConfig;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        isValid = this.validateConfig(config);
-                        if (!isValid) {
-                            console.error('Payment initialization aborted due to missing required fields or invalid payment methods.');
-                            return [2 /*return*/];
-                        }
-                        return [4 /*yield*/, this.loadSDK()];
-                    case 1:
-                        _a.sent(); // Ensure SDK is loaded before initializing
-                        paymentConfig = __assign(__assign({}, config), { apiKey: this.apiKey, contractCode: this.contractCode, onLoadStart: function () { return console.log('Monnify SDK loading started'); }, onLoadComplete: function () { return console.log('Monnify SDK is ready'); }, onComplete: function (response) {
-                                if (config.onComplete) {
-                                    config.onComplete(response);
-                                }
-                                else {
-                                    console.log('Transaction complete:', response);
-                                }
-                            }, onClose: function (response) {
-                                if (config.onClose) {
-                                    config.onClose(response);
-                                }
-                                else {
-                                    console.log('Transaction modal closed:', response);
-                                }
-                            } });
-                        // Include paymentMethods in the configuration if defined
-                        if (config.paymentMethods) {
-                            paymentConfig.paymentMethods = config.paymentMethods;
-                        }
-                        if (window.MonnifySDK) {
-                            window.MonnifySDK.initialize(paymentConfig);
-                        }
-                        else {
-                            throw new Error('Monnify SDK not available');
-                        }
-                        return [2 /*return*/];
-                }
-            });
+      });
+      if (config.paymentMethods && Array.isArray(config.paymentMethods) && config.paymentMethods.length === 0) {
+        console.error('Error: No payment methods specified.');
+        isValid = false;
+      }
+      if (config.paymentMethods) {
+        var invalidMethods = config.paymentMethods.filter(function (method) {
+          return !_this.VALID_PAYMENT_METHODS.includes(method);
         });
-    };
-    // Define the valid payment methods
-    Monnify.VALID_PAYMENT_METHODS = [
-        "CARD",
-        "ACCOUNT_TRANSFER",
-        "USSD",
-        "PHONE_NUMBER"
-    ];
-    return Monnify;
-}());
-export default Monnify;
+        if (invalidMethods.length > 0) {
+          console.error("Invalid payment methods: ".concat(invalidMethods.join(', ')));
+          isValid = false;
+        }
+      }
+      return isValid;
+    }
+
+    // Initializes the payment process
+  }, {
+    key: "initializePayment",
+    value: function initializePayment(config) {
+      var _this2 = this;
+      if (!this.validateConfig(config)) {
+        console.error('Payment initialization aborted due to invalid config.');
+        return;
+      }
+      this.loadSDK().then(function () {
+        var paymentConfig = _objectSpread(_objectSpread({}, config), {}, {
+          apiKey: _this2.apiKey,
+          contractCode: _this2.contractCode,
+          onLoadStart: function onLoadStart() {
+            return console.log('Monnify SDK loading started');
+          },
+          onLoadComplete: function onLoadComplete() {
+            return console.log('Monnify SDK is ready');
+          },
+          onComplete: config.onComplete || function (response) {
+            return console.log('Transaction complete:', response);
+          },
+          onClose: config.onClose || function (response) {
+            return console.log('Transaction modal closed:', response);
+          }
+        });
+        if (window.MonnifySDK) {
+          window.MonnifySDK.initialize(paymentConfig);
+        } else {
+          throw new Error('Monnify SDK not available');
+        }
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    }
+  }]);
+}();
+var _default = exports["default"] = Monnify;
