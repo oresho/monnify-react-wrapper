@@ -17,8 +17,8 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
  * Configuration options for initializing a payment with Monnify.
  * 
  * @param {Object} config - Payment configuration object.
- * @param {number} config.amount - Amount to be paid (in the smallest currency unit, e.g., kobo for NGN).
- * @param {string} config.currency - Currency code (e.g., 'NGN' for Nigerian Naira).
+ * @param {number} config.amount - Amount to be paid.
+ * @param {string} config.currency - Currency code (e.g., 'NGN').
  * @param {string} config.reference - Unique reference for the payment transaction.
  * @param {string} config.customerFullName - Full name of the customer making the payment.
  * @param {string} config.customerEmail - Email address of the customer.
